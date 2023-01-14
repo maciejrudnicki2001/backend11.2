@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  api:
+    container_name: api
+    build:
+      context: ./servuces/API
+      dockerfile: Dockerfile
+    ports:
+        - "8080:3001"
+    networks:
+        - api
+
+  prometheus:
+    container_name: prometheus
+    build:
+      context: ./servuces/Prometheus
+      dockerfile: Dockerfile
+    ports:
+        - "9090:9090"
+    networks:
+        - api
+
+  grafana:
+    container_name: grafana
+    build:
+      context: ./servuces/Grafana
+      dockerfile: Dockerfile
+    ports:
+        - "3000:3000"
+    networks:
+        - api
+
+networks:
+  api:
+
+    
